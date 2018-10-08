@@ -18,15 +18,20 @@ if pokemon_to_predict < 10:
 elif pokemon_to_predict >= 10 and pokemon_to_predict < 100:
     poke = "0" + poke
 
+figure = plt.figure()
+a = figure.add_subplot(1,2,1)
 img1 = mpimg.imread('sprites/Spr_1b_' + poke  + '.png')
 flt1 = img1.flatten()
 plt.imshow(img1)
+a.set_title('Front')
 pokemon_model = joblib.load('outputs/pokemon.mdl')
 prediction_1 = pokemon_model.predict([flt1])[0]
 
+a = figure.add_subplot(1,2,2)
 img2 = mpimg.imread('sprites/' + str(pokemon_to_predict) + '.png')
 flt2 = img1.flatten()
 plt.imshow(img2)
+a.set_title('Back')
 pokemon_model = joblib.load('outputs/pokemon.mdl')
 prediction_2 = pokemon_model.predict([flt2])[0]
 
